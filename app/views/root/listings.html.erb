@@ -1,0 +1,244 @@
+<%= render "header" %>
+
+<h1>Listings</h1>
+        
+<div class="mb-3">
+ <button class="btn btn-danger btn-lg" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" style="margin: 0 auto;width: 100%">
+  Cart
+ </button>
+</div>
+
+<hr class="mb-4">
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Cart</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div>
+      Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+       <%
+=begin%>
+ <table id="line_items">
+        <tr>
+          <th>Product</th>
+          <th>Qty</th>
+          <th class="price">Unit Price</th>
+          <th class="price">Full Price</th>
+        </tr>
+
+        <% for item in @cart.items %>
+          <tr class="<%= cycle :odd, :even %>">
+            <td><%=h item.product.name %></td>
+            <td class="qty"><%= item.quantity %></td>
+             <td class="price"><%= gbp(item.unit_price) %></td>
+             <td class="price"><%= gbp(item.full_price) %></td>
+          </tr>
+        <% end %>
+      <tr>
+
+  <td class="total price" colspan="4">
+    Total: <%= gbp(@cart.total_price) %>
+  </td>
+  </tr>
+  </table> 
+<%
+=end%>
+
+ <%
+=begin%>
+ <table class="jobs">
+    <thead>
+        <tr>
+            <th scope="col" id="name">Product Code</th>
+            <th scope="col" id="company">Name</th>
+            <th scope="col" id="company">Price</th>
+            <th scope="col" id="company">Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @products.each do |product| %>
+        <tr>    
+            <td><%= product.id %></td>
+            <td><%= product.name %></td>
+            <td><%= gbp(product.price) %></td>
+            <td><%= button_to "Add to Cart", add_to_cart_path(:product_id => product), :method => :post %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>  
+<%
+=end%>
+
+    </div>
+    <hr class="mb-4">
+      <a href="/checkout" class="btn btn-primary">Checkout</a>
+  </div>
+</div>
+
+
+<div class="row row-cols-auto row-cols-sm-2 row-cols-md-4">
+ <div class="col">
+  <div class="card">
+   <img src="https://i.etsystatic.com/24583064/r/il/9e357c/3099907428/il_1140xN.3099907428_rint.jpg" class="card-img-top">
+    <div class="card-body">
+     <h5 class="card-title">Rush Order</h5>
+     <p class="card-text">Rush Service (Nails ship Within 1-2 business days)</p>
+     <a href="https://www.etsy.com/listing/1010015906/rush-service-nails-ship-within-1-2?ref=shop_home_active_1&frs=1" class="btn btn-primary">Buy on Etsy</a>
+     <button class="btn btn-primary" type="button" data-bs-target="addtocart" data-bs-target="#addtocart" aria-controls="addtocart">Buy here #TODO Add to cart</a>
+    </div>
+  </div>
+ </div>
+ <div class="col">
+  <div class="card">
+   <img src="https://i.etsystatic.com/24583064/r/il/ca1607/3019705948/il_1140xN.3019705948_hfx5.jpg" class="card-img-top">
+    <div class="card-body">
+     <h5 class="card-title">Black Butterfly Press on Nails</h5>
+     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+     <a href="https://www.etsy.com/listing/844728742/black-butterfly-press-on-nails-press-on?ref=shop_home_feat_1" class="btn btn-primary">Buy on Etsy</a>
+    </div>
+  </div>
+ </div>
+ <div class="col">
+  <div class="card">
+   <img src="https://i.etsystatic.com/24583064/r/il/adc558/3080414496/il_1140xN.3080414496_6fig.jpg" class="card-img-top">
+    <div class="card-body">
+     <h5 class="card-title">BOSSY - Press On Nails</h5>
+     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+     <a href="https://www.etsy.com/listing/1001067537/bossy-press-on-nails-press-on-nails-glue?ref=shop_home_active_2&crt=1" class="btn btn-primary">Buy on Etsy</a>
+    </div>
+  </div>
+ </div>
+ <div class="col">
+  <div class="card">
+   <img src="https://i.etsystatic.com/24583064/r/il/013cc6/3062182545/il_1140xN.3062182545_rk8p.jpg" class="card-img-top">
+    <div class="card-body">
+     <h5 class="card-title">Blackpink "How You Like That" Inspired Press On Nails</h5>
+     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+     <a href="https://www.etsy.com/listing/987093604/blackpink-how-you-like-that-inspired?ref=shop_home_active_5&crt=1" class="btn btn-primary">Buy on Etsy</a>
+    </div>
+  </div>
+ </div>
+
+
+ <div class="col">
+  <div class="card" style="width: 28rem;">
+   <img src="https://i.etsystatic.com/24583064/r/il/a97394/3014502216/il_1140xN.3014502216_fjxp.jpg" class="card-img-top">
+    <div class="card-body">
+     <h5 class="card-title">CEO - Press On Nails</h5>
+     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+     <a href="https://www.etsy.com/listing/1001060321/ceo-press-on-nails-press-on-nails-glue?ref=shop_home_active_3&crt=1" class="btn btn-primary">Buy on Etsy</a>
+    </div>
+  </div>
+ </div>
+ <div class="col">
+  <div class="card" style="width: 28rem;">
+   <img src="https://i.etsystatic.com/24583064/r/il/b884d3/3013375942/il_1140xN.3013375942_82mm.jpg" class="card-img-top">
+    <div class="card-body">
+     <h5 class="card-title">Fresh Fruit Salad - Jelly Press On Nails</h5>
+     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+     <a href="https://www.etsy.com/listing/1000783059/fresh-fruit-salad-jelly-press-on-nails?ref=shop_home_active_6" class="btn btn-primary">Buy on Etsy</a>
+    </div>
+  </div>
+ </div>
+ <div class="col">
+  <div class="card" style="width: 28rem;">
+   <img src="https://i.etsystatic.com/24583064/r/il/fbd3af/3125192841/il_1140xN.3125192841_b603.jpg" class="card-img-top">
+    <div class="card-body">
+     <h5 class="card-title">Life of The Party - Press On Nails</h5>
+     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+     <a href="https://www.etsy.com/listing/1001042737/life-of-the-party-press-on-nails-press?ref=shop_home_active_7&crt=1" class="btn btn-primary">Buy on Etsy</a>
+    </div>
+  </div>
+ </div>
+ <div class="col">
+  <div class="card" style="width: 28rem;">
+   <img src="https://i.etsystatic.com/24583064/r/il/c2b87a/3013326552/il_1140xN.3013326552_i01p.jpg" class="card-img-top">
+    <div class="card-body">
+     <h5 class="card-title">Disney Gold VIP Status - Press On Nails</h5>
+     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+     <a href="https://www.etsy.com/listing/1000768181/disney-gold-vip-status-press-on-nails?ref=shop_home_active_8" class="btn btn-primary">Buy on Etsy</a>
+    </div>
+  </div>
+ </div>
+
+
+ <div class="col">
+  <div class="card" style="width: 28rem;">
+   <img src="https://i.etsystatic.com/24583064/r/il/f0e727/3013175446/il_1140xN.3013175446_orwr.jpg" class="card-img-top">
+    <div class="card-body">
+     <h5 class="card-title">Citrus Orange - Press On Nails</h5>
+     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+     <a href="https://www.etsy.com/listing/986761924/citrus-orange-press-on-nails-press-on?ref=shop_home_active_9&crt=1" class="btn btn-primary">Buy on Etsy</a>
+    </div>
+  </div>
+ </div>
+ <div class="col">
+  <div class="card" style="width: 28rem;">
+   <img src="https://i.etsystatic.com/24583064/r/il/a09786/3060369125/il_1140xN.3060369125_qhxp.jpg" class="card-img-top">
+    <div class="card-body">
+     <h5 class="card-title">Black Onyx Press On Nails | press on nails</h5>
+     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+     <a href="https://www.etsy.com/listing/986600166/black-onyx-press-on-nails-press-on-nails?ref=shop_home_active_10" class="btn btn-primary">Buy on Etsy</a>
+    </div>
+  </div>
+ </div>
+ <div class="col">
+  <div class="card" style="width: 28rem;">
+   <img src="https://i.etsystatic.com/24583064/r/il/dfe726/3060931975/il_1140xN.3060931975_j5e1.jpg" class="card-img-top">
+    <div class="card-body">
+     <h5 class="card-title">Midnight to Coral-Color Change-Press On Nails</h5>
+     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+     <a href="https://www.etsy.com/listing/986773978/midnight-to-coral-color-change-press-on?ref=shop_home_active_11" class="btn btn-primary">Buy on Etsy</a>
+    </div>
+  </div>
+ </div>
+ <div class="col">
+  <div class="card" style="width: 28rem;">
+   <img src="https://i.etsystatic.com/24583064/r/il/3a6804/3012700228/il_1140xN.3012700228_ivju.jpg" class="card-img-top">
+    <div class="card-body">
+     <h5 class="card-title">Alpine Snow- Press On Nails</h5>
+     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+     <a href="https://www.etsy.com/listing/986606790/alpine-snow-press-on-nails-press-on?ref=shop_home_active_12" class="btn btn-primary">Buy on Etsy</a>
+    </div>
+  </div>
+ </div>
+
+
+ <div class="col">
+  <div class="card" style="width: 28rem;">
+   <img src="https://i.etsystatic.com/24583064/r/il/f35f19/3013332624/il_1140xN.3013332624_cvw1.jpg" class="card-img-top">
+    <div class="card-body">
+     <h5 class="card-title">MC Inspired Press On Nails</h5>
+     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+     <a href="https://www.etsy.com/listing/986812716/mc-inspired-press-on-nails?ref=shop_home_active_13" class="btn btn-primary">Buy on Etsy</a>
+    </div>
+  </div>
+ </div>
+ <div class="col">
+  <div class="card" style="width: 28rem;">
+   <img src="https://i.etsystatic.com/24583064/r/il/766714/3021383744/il_1140xN.3021383744_9ur3.jpg" class="card-img-top">
+    <div class="card-body">
+     <h5 class="card-title">Custom Lip Gloss</h5>
+     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+     <a href="https://www.etsy.com/listing/1002529107/custom-lip-gloss?ref=shop_home_active_14" class="btn btn-primary">Buy on Etsy</a>
+    </div>
+  </div>
+ </div>
+ <div class="col">
+  <div class="card" style="width: 28rem;">
+   <img src="https://i.etsystatic.com/24583064/r/il/9923fd/3123835037/il_1140xN.3123835037_c9cy.jpg" class="card-img-top">
+    <div class="card-body">
+     <h5 class="card-title">Sizing Kit- Press On Nails | press on nails</h5>
+     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+     <a href="https://www.etsy.com/listing/987738636/sizing-kit-press-on-nails-press-on-nails?ref=shop_home_active_15&crt=1" class="btn btn-primary">Buy on Etsy</a>
+    </div>
+  </div>
+ </div>
+
+
+</div>
+
+ <h1>Footer - What do you want here Becca? If anything?</h1>
